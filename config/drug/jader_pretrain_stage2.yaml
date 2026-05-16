@@ -1,0 +1,44 @@
+seed: 42
+data:
+  hoddi_output_dir: data/drug/hoddi
+  sequence_glob: '*global_observed*max_order4*topk32*views8*.jsonl'
+  drug_smiles_feature_path: data/drug/hoddi/features/drug_smiles_features.pt
+  split_dir: outputs/jader_hgpm_splits_v2
+  split_prefix: jader_hgpm_stage1_semonly_v2
+  train_ratio: 0.9
+model:
+  hidden_dim: 256
+  num_layers: 4
+  num_heads: 8
+  dropout: 0.1
+  use_drug_id_residual: true
+  resume_stage1_checkpoint: checkpoints/jader_pretrain_stage1/hgpm_drug_semantic_pretrain_best.pt
+pretrain:
+  stage: stage2
+  token_mask_rate: 0.2
+  comp_mask_rate: 0.2
+  lambda_exist: 0.0
+  lambda_comp: 0.05
+training:
+  use_gpu: true
+  checkpoint_dir: checkpoints/jader_pretrain_stage2
+  output_dir: outputs/jader_pretrain_stage2
+  smoke:
+    epochs: 1
+    batch_size: 16
+    lr: 0.0002
+    weight_decay: 0.01
+    warmup_ratio: 0.06
+    gradient_clip_norm: 1.0
+    early_stop_patience: 2
+    mixed_precision: true
+    max_train_steps_per_epoch: 8
+  formal:
+    epochs: 10
+    batch_size: 64
+    lr: 0.0002
+    weight_decay: 0.01
+    warmup_ratio: 0.06
+    gradient_clip_norm: 1.0
+    early_stop_patience: 3
+    mixed_precision: true

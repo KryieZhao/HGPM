@@ -1,0 +1,61 @@
+seed: 42
+data:
+  hoddi_output_dir: data/drug/hoddi
+  sequence_glob: '*global_observed*max_order4*topk32*views8*.jsonl'
+  record_csv: data/drug/jader/raw/jader_eval_subset1_3plus.csv
+  split_column: split
+  max_context_order: 5
+  keep_unknown_context: true
+  mask_target_token: true
+  order_clip: 7
+  drug_smiles_feature_path: data/drug/jader/features/drug_smiles_features.pt
+  train_single_view: true
+  train_single_view_seed: 42
+model:
+  hidden_dim: 256
+  num_layers: 4
+  num_heads: 8
+  dropout: 0.1
+  record_side_effect_dim: 128
+  pooling: mean
+  center_representation: center_only
+  use_drug_id_residual: true
+  use_side_effect_in_encoder: false
+  use_exist_input_in_formal: false
+  use_comp_input_in_formal: false
+  selection_metric: auprc
+  resume_semantic_checkpoint: checkpoints/jader_pretrain_stage1/hgpm_drug_semantic_pretrain_best.pt
+training:
+  use_gpu: true
+  checkpoint_dir: checkpoints/jader_finetune
+  output_dir: outputs/jader_finetune
+  best_checkpoint_name: formal_best.pt
+  last_checkpoint_name: formal_last.pt
+  train_log_name: formal_train_log.jsonl
+  val_metrics_name: formal_val_metrics.json
+  test_metrics_name: formal_test_metrics.json
+  metrics_by_order_name: formal_metrics_by_order.json
+  val_predictions_name: formal_val_predictions.jsonl
+  test_predictions_name: formal_test_predictions.jsonl
+  val_examples_name: formal_val_examples.json
+  test_examples_name: formal_test_examples.json
+  smoke:
+    epochs: 1
+    batch_size: 8
+    lr: 0.0003
+    weight_decay: 0.001
+    warmup_ratio: 0.06
+    gradient_clip_norm: 1.0
+    early_stop_patience: 2
+    mixed_precision: true
+    max_train_steps_per_epoch: 8
+    max_val_steps: 4
+  formal:
+    epochs: 16
+    batch_size: 64
+    lr: 0.0003
+    weight_decay: 0.001
+    warmup_ratio: 0.06
+    gradient_clip_norm: 1.0
+    early_stop_patience: 4
+    mixed_precision: true

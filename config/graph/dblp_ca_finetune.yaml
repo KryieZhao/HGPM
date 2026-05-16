@@ -1,0 +1,30 @@
+seed: 42
+data:
+  protocol_dir: data/graph/protocols/dblp_ca_protocol_502525
+  sequence_path: data/graph/dags/dblp_ca_centered_hyperedge_dag_paper_v1/dblp_ca_centered_hyperedge_dag.max_order8.topk24.views2.jsonl
+  drug2id_path: data/graph/dags/dblp_ca_centered_hyperedge_dag_paper_v1/drug2id.json
+  node_feature_path: data/graph/dags/dblp_ca_centered_hyperedge_dag_paper_v1/paper_node_features.pt
+  k_views: 2
+model:
+  hidden_dim: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.5
+  order_vocab_size: 16
+  exist_vocab_size: 4
+  exist_source_vocab_size: 8
+  view_vocab_size: 8
+training:
+  use_gpu: true
+  init_checkpoint: checkpoints/dblp_ca_pretrain/hgpm_graph_semantic_pretrain_best.pt
+  checkpoint_dir: checkpoints/dblp_ca_finetune
+  output_dir: outputs/dblp_ca_finetune
+  epochs: 12
+  batch_size: 128
+  lr: 0.0005
+  weight_decay: 0.0005
+  patience: 5
+  gradient_clip_norm: 1.0
+  smoke_epochs: 1
+  smoke_batch_size: 64
+  smoke_max_steps: 4

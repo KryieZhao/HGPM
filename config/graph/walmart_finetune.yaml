@@ -1,0 +1,37 @@
+seed: 42
+data:
+  protocol_dir: data/graph/protocols/walmart_protocol_502525
+  drug2id_path: data/graph/protocols/walmart_protocol_502525/drug2id.json
+  node_feature_path: data/graph/protocols/walmart_protocol_502525/paper_node_features.pt
+  k_views: 1
+dag:
+  max_order: 4
+  top_k_per_order: 2
+  negatives_per_positive: 1
+  observed_heavy: true
+  sampled_budget_per_order: 1
+  max_substructures_per_edge: 4
+model:
+  hidden_dim: 256
+  num_layers: 3
+  num_heads: 8
+  dropout: 0.3
+  order_vocab_size: 16
+  exist_vocab_size: 4
+  exist_source_vocab_size: 8
+  view_vocab_size: 8
+training:
+  use_gpu: true
+  init_checkpoint: checkpoints/walmart_pretrain/hgpm_graph_semantic_pretrain_best.pt
+  checkpoint_dir: checkpoints/walmart_finetune
+  output_dir: outputs/walmart_finetune
+  epochs: 150
+  batch_size: 512
+  lr: 0.0001
+  weight_decay: 0.001
+  patience: 5
+  gradient_clip_norm: 5.0
+  smoke_epochs: 1
+  smoke_batch_size: 2
+  smoke_max_steps: 1
+  smoke_max_eval_steps: 1

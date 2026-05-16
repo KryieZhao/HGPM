@@ -1,0 +1,17 @@
+# Python 3.11 (use conda for python + cuda toolkit; pip-install torch + the rest)
+#
+# Recommended setup:
+#   conda create -n hgpm -c conda-forge python=3.11 -y
+#   conda activate hgpm
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+#   pip install -r requirements.txt
+#
+# Versions actually used to produce the committed results:
+torch==2.6.0+cu124
+numpy>=2.0
+scipy>=1.13
+scikit-learn>=1.5
+pandas>=2.2
+pyyaml>=6.0
+matplotlib>=3.8
+networkx>=3.2

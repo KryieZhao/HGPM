@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / editor
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Training artifacts
+outputs/
+checkpoints/
+verification/
+wandb/
+runs/
+
+# Distributed dataset archives
+release_assets/*.zip
+
+# Local unpacked data packages
+data/graph/protocols/
+data/graph/dags/
+data/drug/hoddi/
+data/drug/jader/

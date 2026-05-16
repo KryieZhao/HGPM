@@ -1,0 +1,30 @@
+seed: 42
+data:
+  protocol_dir: data/graph/protocols/senate_protocol_502525
+  sequence_path: data/graph/dags/senate_centered_hyperedge_dag_paper_v1/senate_centered_hyperedge_dag.max_order24.topk16.views2.jsonl
+  drug2id_path: data/graph/dags/senate_centered_hyperedge_dag_paper_v1/drug2id.json
+  node_feature_path: data/graph/dags/senate_centered_hyperedge_dag_paper_v1/paper_node_features.pt
+  k_views: 2
+model:
+  hidden_dim: 128
+  num_layers: 4
+  num_heads: 2
+  dropout: 0.5
+  order_vocab_size: 16
+  exist_vocab_size: 4
+  exist_source_vocab_size: 8
+  view_vocab_size: 8
+training:
+  use_gpu: true
+  init_checkpoint: checkpoints/senate_pretrain/hgpm_graph_semantic_pretrain_best.pt
+  checkpoint_dir: checkpoints/senate_finetune
+  output_dir: outputs/senate_finetune
+  epochs: 200
+  batch_size: 32
+  lr: 0.01
+  weight_decay: 0.001
+  patience: 15
+  gradient_clip_norm: 5.0
+  smoke_epochs: 1
+  smoke_batch_size: 16
+  smoke_max_steps: 4
