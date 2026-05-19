@@ -1,6 +1,6 @@
 # HGPM: Hypergraph Pattern Machine
 
-[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/2605.16527)
+[![arXiv](https://img.shields.io/badge/arXiv-2605.16527-b31b1b.svg)](https://arxiv.org/abs/2605.16527)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](requirements.txt)
 [![PyTorch 2.6](https://img.shields.io/badge/pytorch-2.6%2Bcu124-ee4c2c.svg)](requirements.txt)
