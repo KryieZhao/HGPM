@@ -80,7 +80,12 @@ through data loading, pretraining, finetuning, and evaluation).
   title  = {Hypergraph Pattern Machine: Compositional Tokenization for Higher-Order Interactions},
   author = {Zhao, Kyrie and Wang, Zehong and Ma, Tianyi and Wu, Fang and
             Tang, Xiangru and Li\`{o}, Pietro and Wang, Sheng and Ye, Yanfang},
-  year   = {2026}
+  year   = {2026},
+  eprint = {2605.16527},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  doi    = {10.48550/arXiv.2605.16527},
+  url    = {https://arxiv.org/abs/2605.16527}
 }
 ```
 
